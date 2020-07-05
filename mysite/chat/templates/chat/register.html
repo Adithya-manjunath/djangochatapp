@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css">
+        <meta charset="utf-8"/>
+  <script>
+      function register() {
+    name = document.querySelector('#name').value;
+    if (!Boolean(name) || name === "undefined") {
+        alert("retry");
+        return true;
+    }
+
+    localStorage.name = name;
+    location.replace("/chat");
+}
+function welcome() {
+
+if (!localStorage.name) {
+    reg_form = '<form><input id="name" name="name" type="text" class="form-control" placeholder="User Name"><br><button class="btn btn-default nav-create_channel" onclick="register()">Register</button></form>';
+    document.querySelector('#reg_form').innerHTML = reg_form;
+} else {
+    window.location.href = '/chat';
+}
+}
+
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    welcome();
+  }
+  );
+
+  </script>
+  <title>Hello</title>
+</head>
+<body>
+  <div id="reg_form">
+</div>
+</body>
+</html>
