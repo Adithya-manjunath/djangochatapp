@@ -6,4 +6,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('', views.index, name='index'),
     path('room/<str:room_name>/<str:user_name>', views.room, name='room'),
+    path('interaction/', views.interaction, name='interaction'),
 ]

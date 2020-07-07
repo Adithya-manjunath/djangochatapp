@@ -12,4 +12,7 @@ def room(request, room_name, user_name):
 def register(request):
     return render(request, 'chat/register.html')
 
+def interaction(request):
+    return render(request, 'chat/interaction.html')
+
     

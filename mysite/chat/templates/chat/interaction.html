@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css">
+      
+    <style>
+div {
+    align-self: start;
+    width: 500px;
+  height: 400px;
+  border: 1px solid black;
+  text-align: center;
+
+}
+</style>
+</head>
+<center>
+<body >
+    
+<div onclick="showcoords(event)" onclick="clearCoor()"  id="div_data"></div>
+
+    
+
+<h4><p>click anywhere to get client and screen coordinates</p></h4>
+<p id="demo"></p>
+
+
+
+<script>
+    function button(obj){
+    var z=obj.value;
+    var chatSocket=new WebSocket('ws://'+window.location.host+'/ws/chat/number/'+z+'/');
+            chatSocket.onmessage=function(e){
+                var data=JSON.parse(e.data)
+                var message=data['message']
+                var div=document.querySelector("#demo");
+
+                div.innerHTML='<center><div><h1>'+message+'<h1></div><center>';
+                
+                
+            }
+    
+    }
+</script>
+<button value="1" onclick="button(this)" class="btn btn-default nav-create_channel" >print 1</button>
+<button value="2" onclick="button(this)" class="btn btn-default nav-create_channel" >print 2</button>
+<button value="3" onclick="button(this)" class="btn btn-default nav-create_channel" >print 3</button>
+<button value="4" onclick="button(this)" class="btn btn-default nav-create_channel">print 4</button>
+<script>
+
+function showcoords(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  var sx = e.screenX;
+  var sy = e.screenY;
+  var chatSocket=new WebSocket('ws://'+window.location.host+'/ws/chat/coords/'+x+'/get/'+y+'/get/'+sx+'/get/'+sy+'/');
+            chatSocket.onmessage=function(e){
+                var data=JSON.parse(e.data)
+                var message=data['message']
+                var div=document.querySelector("#div_data");
+
+                div.innerHTML = '<center><h1>'+message+'</h1><center>';
+                
+                
+            }
+    
+}
+
+
+
+
+  
+
+
+
+
+</script>
+
+</body></center>
+</html>

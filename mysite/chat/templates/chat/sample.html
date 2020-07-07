@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div onmouseover="mOver(this)" onmouseout="mOut(this)" 
+style="background-color:#D94A38;width:120px;height:20px;padding:40px;">
+Mouse Over Me</div>
+<div style="top:100"><input class="form-control nav-create_channel" id="chat-message-input" type="text" size="100"><br>
+<!--<script>
+
+document.querySelector(onmouseover).innerHTML = "thank you";
+    };
+
+
+socket.mOver = function(e) {
+        HTMLDivElement.onmouseout.innerHTML = "thank you";
+        };
+        
+    socket.mOut = function(e) {
+        HTMLDivElement.onmouseover.innerHTML = "mouse over me";
+        };
+function mOver(obj) {
+  obj.innerHTML = "Thank You"
+}
+function mOut(obj) {
+  obj.innerHTML = "Mouse Over Me"
+}
+
+
+</script>-->
+<script>
+        var socket = new WebSocket('ws://'
+            + window.location.host
+            + '/ws/chat/interaction/');
+    socket.mOver = function mOver(obj) {
+  obj.innerHTML = "Thank You"
+}
+    socket.mOut = function mOut(obj) {
+  obj.innerHTML = "Mouse Over Me"
+}
+
+var textsend = document.getElementById(“text-view”);
+var submitMsg = document.getElementById(“tsend-button”);
+
+//Handling the click event
+submitMsg. = function ( ) {
+   // Send the data
+   socket.send( textsend.value);
+}
+
+            
+    
+</script>
+</body>
+</html> 
+function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ 
+    alert("You Click Right Button");
+    var x=1
+    var chatSocket=new WebSocket('ws://'+window.location.host+'/ws/chat/right/'+x+'/');
+            chatSocket.onmessage=function(e){
+                var data=JSON.parse(e.data)
+                var message=data['message']
+                var div=document.querySelector("#div_data");
+
+                div.innerHTML+='<div style="color:black;background:green;">'+message+'</div>';
+                
+                return false;
+            }
+    }
+
+if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) {alert("You Click Right Button");return false; } }
+
+document.onmousedown = rtclickcheck;
+
+</script>
+
+
+function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ 
+    alert("You Click Right Button");
+    var x=1
+    var chatSocket=new WebSocket('ws://'+window.location.host+'/ws/chat/right/'+x+'/');
+            chatSocket.onmessage=function(e){
+                var data=JSON.parse(e.data)
+                var message=data['message']
+                var div=document.querySelector("#div_data");
+
+                div.innerHTML+='<div style="color:black;background:green;">'+message+'</div>';
+                
+                return false;
+            }
+    }
+
+if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) {alert("You Click Right Button");return false; } }
+
+document.onmousedown = rtclickcheck;
+
+
+
+document.getElementById("myBtn").addEventListener("click", displayDate);
+
+function displayDate() {
+    var z = 3;
+    var chatSocket=new WebSocket('ws://'+window.location.host+'/ws/chat/button/'+z+'/');
+        chatSocket.onmessage=function(e){
+            var data = JSON.parse(e.data)
+            var message=data['message']
+           
+            document.querySelector('demo').innerHTML += '<div>'+(data.message)+"</div>";
+        }
+
+}
+<p>click on this button to get today's time</p>
+<button id="myBtn">Try it</button>
+
+class Date(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.z=self.scope['url_route']['kwargs']['z']
+        self.room_group_name='chat_%s' % self.z
+        print(self.room_group_name)
+        await self.channel_layer.group_add(
+            self.room_group_name,
+            self.channel_name
+        )
+
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                "type":"chat_message",
+                "message":self.z
+            }
+        )
+        await self.accept()
+
+    async def chat_message(self,event):
+        message=event['message']
+
+        await self.send(text_data=json.dumps({
+            'message':message
+        }))
+        function getdate(obj){
+            var z= Date();
+            var chatSocket=new WebSocket('ws://'+window.location.host+'/ws/chat/date/'+z+'/');
+                    chatSocket.onmessage=function(e){
+                        var data=JSON.parse(e.data)
+                        var message=data['message']
+                        var div=document.querySelector("#demo");
+        
+                        div.innerHTML='<center><div>'+message+'</div><center>';
+                        
+                        
+                    }
+            
+            }
+          document.getElementById("demo1").innerHTML = Date();
+        }
+        
+        
+
+<p>This example uses the addEventListener() method to attach a click event to a button.</p>
+
+<button id="myBtn" onclick="getdate(obj)">Try it</button>
+
+<p id="demo1"></p>
