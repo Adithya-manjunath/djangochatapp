@@ -127,6 +127,6 @@ CHANNEL_LAYERS={
         "BACKEND":"channels.layers.InMemoryChannelLayer"
     }
 }
-
+#testing
 
 django_heroku.settings(locals())
