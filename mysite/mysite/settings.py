@@ -15,9 +15,13 @@ SECRET_KEY = 'h_%ty61zi8q-i72p(+3=1welel*i(1he2(#&9@n*vjvj%#-4lk'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 # Application definition
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 INSTALLED_APPS = [
     'channels',
@@ -37,11 +41,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
